@@ -18,8 +18,6 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-
-
         ProductService.retrofit.getProduct().enqueue(object : Callback<List<UsersItem>> {
             override fun onResponse(
                 call: Call<List<UsersItem>>,
@@ -39,15 +37,8 @@ class MainActivity : AppCompatActivity() {
                         stringBuilder.append("Company : ${it.company}"+"\n")
                         stringBuilder.append("Website : ${it.website}"+"\n \n \n")
                     }
+                    binding.textView.text = stringBuilder.toString()
 
-                    binding.textId.text = stringBuilder
-                    binding.name.text = stringBuilder
-                    binding.userName.text = stringBuilder
-                    binding.email.text = stringBuilder
-                    binding.phone.text = stringBuilder
-                    binding.address.text = stringBuilder
-                    binding.company.text = stringBuilder
-                    binding.website.text = stringBuilder
                 } else {
                     println("Error: ${response.code()}")
                 }
@@ -59,5 +50,4 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
-
 }
